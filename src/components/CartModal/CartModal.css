@@ -1,0 +1,9 @@
+.rounded-cart {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.cart-totals {
+  width: -webkit-fill-available;
+  @apply justify-between px-6;
+}

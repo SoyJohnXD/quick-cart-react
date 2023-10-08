@@ -1,0 +1,15 @@
+.nav {
+  @apply px-4 py-1 bg-primary flex justify-between items-center md:px-7 md:gap-0 gap-2 fixed w-screen top-0;
+}
+
+.nav > .logo {
+  @apply text-3xl font-bold leading-none lg:w-1/6 w-auto flex items-center flex-row cursor-pointer hover:translate-x-1 transition;
+}
+
+.nav > .nav-icons {
+  @apply lg:w-1/6 text-white text-xl flex flex-row items-center justify-end gap-1;
+}
+
+.nav > .nav-icons > a {
+  @apply cursor-pointer hover:scale-110;
+}

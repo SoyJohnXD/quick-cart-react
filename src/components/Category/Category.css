@@ -1,0 +1,3 @@
+.category {
+  @apply flex flex-col gap-1 text-center items-center justify-between cursor-pointer hover:scale-105 transition min-w-[130px];
+}

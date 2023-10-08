@@ -1,0 +1,15 @@
+.input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+}
+
+.input-search {
+  @apply md:w-6/12 w-full mx-auto bg-white rounded-md px-1 py-1 flex flex-row items-center;
+}
+
+.input-search > input {
+  @apply bg-transparent text-sm text-black border-none outline-none w-11/12 lg:pl-3 flex-1;
+}
+
+.input-search > img {
+  @apply w-3.5 h-3.5 right-0;
+}
