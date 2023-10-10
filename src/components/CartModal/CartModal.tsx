@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Modal } from "../Modal/Modal";
 import { Modal as IModal } from "../../types";
 import { CartProduct } from "./components/CartProduct";
@@ -13,6 +13,12 @@ export default function CartModal({ show, setShow }: IModal) {
     return Cart.reduce((accumulator, product) => {
       return accumulator + product.quantity_buy * product.price;
     }, 0);
+  }, [Cart]);
+
+  useEffect(() => {
+    if (!show) {
+      setShow(true);
+    }
   }, [Cart]);
 
   return (
