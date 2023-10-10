@@ -8,7 +8,7 @@ export function AdminPanel() {
       title: "Gestion de Productos",
       description:
         "Administra inventarios, precios y detalles de productos para una experiencia de compra eficiente.",
-      to: "/manage-product",
+      to: "/manage-products",
     },
     {
       urlImg: usersImg,

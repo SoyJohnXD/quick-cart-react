@@ -4,10 +4,13 @@ import authReducer from "./auth/slice";
 import cartReducer from "./cart/slice";
 import productsReducer from "./products/slice";
 
-const persistenceLocalStorageMiddleware = (store) => (next) => (action) => {
-  next(action);
-  localStorage.setItem("__redux__state__", JSON.stringify(store.getState()));
-};
+const persistenceLocalStorageMiddleware =
+  (store: { getState: () => any }) =>
+  (next: (arg0: any) => void) =>
+  (action: any) => {
+    next(action);
+    localStorage.setItem("__redux__state__", JSON.stringify(store.getState()));
+  };
 
 export const store = configureStore({
   reducer: {
