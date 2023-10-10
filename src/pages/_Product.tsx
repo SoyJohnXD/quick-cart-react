@@ -1,18 +1,36 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../constants";
-import Breadcum from "../components/Breadcum/Breadcum";
 import { currencyFormatter } from "../utils";
+import { useAppSelector } from "../hook/store";
+import { useCartActions } from "../hook/useCartActions";
+import { CartProduct, product } from "../types";
 
 export default function Product() {
   const { product } = useParams();
-  const [prod, setProd] = useState(
-    products.find((_product) => _product.id === product)
+  const Products = useAppSelector((state) => state.products);
+  const [prod, setProd] = useState<product>(
+    Products.find((_product) => _product.id === product)
   );
+
+  const { addProductCart } = useCartActions();
+
+  const handdleAddProductCart = (): void => {
+    const { id, name, brand, img, variants, description } = prod;
+    const productCart: CartProduct = {
+      id,
+      name,
+      brand,
+      img,
+      ...variants[0],
+      variants,
+      description,
+      quantity_buy: 1,
+    };
+    addProductCart(productCart);
+  };
 
   return (
     <div className="bg-gray-100 py-4 mt-9">
-      <Breadcum />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row -mx-4">
           <div className="md:flex-1 px-4">
@@ -25,7 +43,10 @@ export default function Product() {
             </div>
             <div className="flex -mx-2 mb-4">
               <div className="w-1/2 px-2">
-                <button className="w-full text-center border-none font-bold text-white bg-purple-700 hover:bg-purple-800 py-2 text-lg gap-1 flex flex-row items-center justify-center">
+                <button
+                  onClick={handdleAddProductCart}
+                  className="w-full text-center border-none font-bold text-white bg-purple-700 hover:bg-purple-800 py-2 text-lg gap-1 flex flex-row items-center justify-center"
+                >
                   Agregar
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +91,7 @@ export default function Product() {
               {prod?.variants[0].unit}
             </h2>
             <p className="text-gray-600 text-sm mb-4">
-              Refisal 1000 gr es una sal refinada de alta calidad, esencial en
-              la cocina para realzar el sabor de tus platos.
+              Envios inmediatos a todo el pais 📩
             </p>
             <div className="flex mb-4">
               <div className="mr-4">

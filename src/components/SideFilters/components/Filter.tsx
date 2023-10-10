@@ -4,12 +4,10 @@ import { stringToKebabCase } from "../../../utils";
 export default function Filter({ filter, setFilters, filters }: Filter) {
   const handdleFilter = (title: string) => {
     setFilters((prevFilters) =>
-      prevFilters.map((filterGroup) =>
-        filterGroup.map((filter: { title: string; isCheck: boolean }) => ({
-          ...filter,
-          ...(filter.title === title && { isCheck: !filter.isCheck }),
-        }))
-      )
+      prevFilters.map((filter: { title: string; isCheck: boolean }) => ({
+        ...filter,
+        ...(filter.title === title && { isCheck: !filter.isCheck }),
+      }))
     );
   };
   return (
@@ -19,8 +17,8 @@ export default function Filter({ filter, setFilters, filters }: Filter) {
         className="form-checkbox mr-2"
         name={stringToKebabCase(filter.title)}
         checked={
-          filters.flat().find((filterList) => filterList.title === filter.title)
-            .isCheck
+          filters?.find((filterList) => filterList.title === filter.title)
+            ?.isCheck
         }
         onChange={() => handdleFilter(filter.title)}
       />

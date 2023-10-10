@@ -1,30 +1,11 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { User, UserWithId } from "../../types";
+import { USERS_DEFAULT } from "../../constants";
 
-const DEFAULT_STATE: UserWithId[] = [
-  {
-    id: "1",
-    name: "Admin",
-    lastname: "Admin",
-    email: "admin@admin.com",
-    password: "admin",
-    role: "admin",
-  },
-  {
-    id: "2",
-    name: "John",
-    lastname: "Londono",
-    email: "johnjulin2@gmail.com",
-    password: "password",
-    role: "client",
-  },
-];
-
-const initialState: UserWithId[] = (() => {
-  const persistedState = localStorage.getItem("__redux__state__");
-  if (persistedState) return JSON.parse(persistedState).users;
-  return DEFAULT_STATE;
-})();
+const persistedState = localStorage.getItem("__redux__state__");
+const initialState: UserWithId[] = persistedState
+  ? JSON.parse(persistedState)?.users ?? USERS_DEFAULT
+  : USERS_DEFAULT;
 
 export const usersSlice = createSlice({
   name: "users",

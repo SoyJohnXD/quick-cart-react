@@ -1,14 +1,37 @@
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
-import { product } from "../../types";
+import { CartProduct, product } from "../../types";
 import { currencyFormatter, stringToKebabCase } from "../../utils";
 import { cartIcon } from "../../assets";
+import { useCartActions } from "../../hook/useCartActions";
 import "./CardProduct.css";
 
-export function CardProduct({ id, name, variants, brand, img }: product) {
+export function CardProduct({
+  id,
+  name,
+  variants,
+  brand,
+  img,
+  description,
+}: product) {
   const { price, unit, quantity } =
     (variants && variants.find((variant) => variant.is_outstanding)) ||
     variants[0];
+  const { addProductCart } = useCartActions();
+
+  const handdleAddProductCart = (): void => {
+    const productCart: CartProduct = {
+      id,
+      name,
+      brand,
+      img,
+      ...variants[0],
+      variants,
+      description,
+      quantity_buy: 1,
+    };
+    addProductCart(productCart);
+  };
   return (
     <div className="product">
       <Link to={`../product/${stringToKebabCase(id)}`}>
@@ -30,7 +53,9 @@ export function CardProduct({ id, name, variants, brand, img }: product) {
         type="button"
         classButton="button-product bg-purple-700 hover:bg-purple-800 rounded-none "
         classIcon="w-5 h-5 invert"
-        onClick={() => {}}
+        onClick={() => {
+          handdleAddProductCart();
+        }}
       />
     </div>
   );

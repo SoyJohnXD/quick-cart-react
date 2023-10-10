@@ -5,16 +5,21 @@ import {
   categoryVine,
   categoryDrinks,
   cleanBanner,
-  registerIlustration,
   oil,
   tuna,
   salt,
   coffe,
-  bellIcon,
-  personIcon,
-  cartIcon,
+  placeholder,
 } from "../assets";
-import { Auth, AuthForm, RegisterUser, Routes } from "../types";
+import {
+  AuthForm,
+  CartProductWhitId,
+  ProductForm,
+  RegisterUser,
+  Routes,
+  UserWithId,
+  userAuth,
+} from "../types";
 
 export const banners = [
   {
@@ -164,8 +169,9 @@ export const products = [
   },
 ];
 
-export const cartProducts = [
+export const cartProducts: CartProductWhitId[] = [
   {
+    cartId: crypto.randomUUID(),
     id: "1",
     brand: "REFISAL",
     name: "Sal refinada",
@@ -181,6 +187,7 @@ export const cartProducts = [
       "Refisal 1000 gr es una sal refinada de primera calidad, imprescindible en cualquier cocina. Creada mediante un proceso de refinación cuidadoso, garantiza la pureza y la textura fina que facilita su incorporación a tus recetas. Esta sal es ideal para sazonar y realzar el sabor de tus platos favoritos, desde sopas y guisos hasta carnes a la parrilla y ensaladas frescas. Su granulometría uniforme y suave al tacto te permiten controlar con precisión la cantidad que deseas utilizar.",
   },
   {
+    cartId: crypto.randomUUID(),
     id: "2",
     brand: "VAN CAMPS",
     name: "Atún baby en aceite de oliva",
@@ -196,6 +203,7 @@ export const cartProducts = [
       "Atún baby en aceite de oliva de Van Camps, elaborado con los mejores ingredientes para garantizar su frescura y sabor. Disfruta de este delicioso atún en ensaladas, sandwiches y platos gourmet.",
   },
   {
+    cartId: crypto.randomUUID(),
     id: "3",
     brand: "GOURMET",
     name: "Aceite Familia Multiusos",
@@ -226,8 +234,45 @@ export const USER_EMPTY: RegisterUser = {
   confirm_password: "",
   role: "client",
 };
+export const PROD_EMPTY: ProductForm = {
+  brand: "",
+  name: "",
+  img: placeholder,
+  quantity: 0,
+  unit: "",
+  price: 0,
+  is_outstanding: true,
+  stock: 0,
+  description: "",
+  categories: "",
+};
 
 export const LOGIN_EMPTY: AuthForm = {
   email: "",
   password: "",
 };
+
+export const AUTH_EMPTY: userAuth = {
+  name: "",
+  email: "",
+  role: "client",
+};
+
+export const USERS_DEFAULT: UserWithId[] = [
+  {
+    id: "1",
+    name: "Admin",
+    lastname: "Admin",
+    email: "admin@gmail.com",
+    password: "admin",
+    role: "admin",
+  },
+  {
+    id: "2",
+    name: "John",
+    lastname: "Doe",
+    email: "user@gmail.com",
+    password: "user",
+    role: "client",
+  },
+];

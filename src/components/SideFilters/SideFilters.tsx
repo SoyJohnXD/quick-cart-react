@@ -2,32 +2,36 @@ import { useEffect, useState } from "react";
 import { SideFilters } from "../../types";
 import Filter from "./components/Filter";
 
-export function SideFilters({
-  setProductsList,
-  productsList,
-  products,
-}: SideFilters) {
-  const categoriesFilter = [
-    [
-      { title: "Alimentos Básicos", isCheck: false },
-      { title: "Bebidas", isCheck: false },
-      { title: "Lácteos", isCheck: false },
-      { title: "Frutas y Verduras", isCheck: false },
-      { title: "Panadería", isCheck: false },
-      { title: "Limpieza", isCheck: false },
-      { title: "Cuidado Personal", isCheck: false },
-      { title: "Tecnología", isCheck: false },
-      { title: "Hogar", isCheck: false },
-      { title: "Otros", isCheck: false },
-    ],
-    [
-      { title: "REFISAL", isCheck: false },
-      { title: "SELLO ROJO", isCheck: false },
-      { title: "VAN CAMPS", isCheck: false },
-      { title: "GOURMET", isCheck: false },
-    ],
-  ];
-  const [filters, setFilters] = useState(categoriesFilter);
+export function SideFilters({ setProductsList, products }: SideFilters) {
+  type CategoryItem = {
+    title: string;
+    isCheck: boolean;
+  };
+
+  function extractCategories(): CategoryItem[] {
+    const categories: string[] = [];
+    products.forEach((product) => {
+      product.categories?.forEach((category: string) => {
+        if (!categories.includes(category)) {
+          categories.push(category);
+        }
+      });
+    });
+
+    const categoryItems: CategoryItem[] = categories.map((category) => {
+      return {
+        title: category,
+        isCheck: false,
+      };
+    });
+
+    return categoryItems;
+  }
+
+  const filtersExtract = extractCategories();
+
+  const [filters, setFilters] = useState(filtersExtract);
+
   useEffect(() => {
     if (filters.flat().some((filter) => filter.isCheck)) {
       setProductsList(
@@ -65,24 +69,10 @@ export function SideFilters({
           </button>
         </div>
         <div className="mb-4">
-          <h2 className="text-lg font-normal mb-2">Marca</h2>
-
           <div className="space-y-2 ml-3">
-            {categoriesFilter[0].map((category) => (
+            {filtersExtract.map((category) => (
               <Filter
-                filters={filters}
-                filter={category}
-                setFilters={setFilters}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-lg font-normal mb-2">Tipo de Producto</h2>
-          <div className="space-y-2 ml-3">
-            {categoriesFilter[1].map((category) => (
-              <Filter
+                key={"filter-" + category.title}
                 filters={filters}
                 filter={category}
                 setFilters={setFilters}

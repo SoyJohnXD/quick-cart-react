@@ -2,11 +2,12 @@ import { useState } from "react";
 import Breadcum from "../components/Breadcum/Breadcum";
 import { ListProduct } from "../components/ListProducts/ListProduct";
 import { SideFilters } from "../components/SideFilters/SideFilters";
-import { products } from "../constants";
 import { product } from "../types";
+import { useAppSelector } from "../hook/store";
 
 export function Products() {
-  const [productsList, setProductsList] = useState<product[]>(products);
+  const Products = useAppSelector((state) => state.products);
+  const [productsList, setProductsList] = useState<product[]>(Products);
 
   return (
     <div className="mt-9">
@@ -18,7 +19,7 @@ export function Products() {
         <SideFilters
           setProductsList={setProductsList}
           productsList={productsList}
-          products={products}
+          products={Products}
         />
         <ListProduct products={productsList} />
       </div>

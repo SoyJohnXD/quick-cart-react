@@ -13,7 +13,7 @@ export function Button({
     <button
       onClick={onClick}
       type={type}
-      className={`button  ${classButton || ""} button bg-primary`}
+      className={`${classButton || ""} button bg-primary`}
     >
       {title}
       {icon && <img className={classIcon} src={icon} />}

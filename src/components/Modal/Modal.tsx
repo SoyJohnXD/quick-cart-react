@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ModalBasic } from "../../types";
 import "./Modal.css";
 import { CloseButton } from "./components/CloseButton";
@@ -11,6 +12,14 @@ export function Modal({
   id,
   title,
 }: ModalBasic) {
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [show]);
+
   return (
     <div
       id={id}

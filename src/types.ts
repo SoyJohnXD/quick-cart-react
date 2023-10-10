@@ -63,6 +63,10 @@ export interface CartProduct extends product {
   stock: number;
 }
 
+export interface CartProductWhitId extends CartProduct {
+  cartId: string;
+}
+
 export interface Variants {
   quantity: number;
   unit: string;
@@ -79,6 +83,19 @@ export interface product {
   description: string;
   categories?: string[];
 }
+export interface ProductForm {
+  brand: string;
+  name: string;
+  img: string;
+  description: string;
+  categories: string;
+  quantity: number;
+  unit: string;
+  price: number;
+  is_outstanding: boolean;
+  stock: number;
+}
+
 export interface ListProduct {
   products: product[];
 }
@@ -97,7 +114,7 @@ export interface Category {
 
 export interface Filter {
   filter: { title: string; isCheck: boolean };
-  filters: { title: string; isCheck: boolean }[][];
+  filters: { title: string; isCheck: boolean }[];
   setFilters: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
@@ -136,4 +153,11 @@ export interface AuthForm {
 
 export interface Navbar {
   auth: userAuth;
+}
+
+export interface Table {
+  columns: string[];
+  children: ReactNode;
+  classTable?: string;
+  classContainer?: string;
 }

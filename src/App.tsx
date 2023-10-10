@@ -6,6 +6,8 @@ import { Products } from "./pages/Products";
 import { Footer } from "./components/Footer/Footer";
 import Product from "./pages/_Product";
 import { useAppSelector } from "./hook/store";
+import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
+import ManageProducts from "./pages/ManageProducts";
 
 function App() {
   const Auth = useAppSelector((state) => state.auth);
@@ -13,9 +15,16 @@ function App() {
     <>
       <Navbar auth={Auth} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {Auth.role === "client" ? (
+          <Route path="/" element={<Home />} />
+        ) : (
+          <Route path="/" element={<AdminPanel />} />
+        )}
         <Route path="/products" element={<Products />} />
         <Route path="/product/:product" element={<Product />} />
+        {Auth.role === "admin" && (
+          <Route path="/manage-products" element={<ManageProducts />} />
+        )}
       </Routes>
       <Footer />
     </>

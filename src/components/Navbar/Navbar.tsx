@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { SearchInput } from "../Input/Input";
 import LoginModal from "../LoginModal/LoginModal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { bellIcon, cartIcon, logedIcon, personIcon } from "../../assets";
+import {
+  bellIcon,
+  cartIcon,
+  clipsIcon,
+  logedIcon,
+  personIcon,
+} from "../../assets";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import CartModal from "../CartModal/CartModal";
 import { Navbar } from "../../types";
@@ -14,32 +20,55 @@ export function Navbar({ auth }: Navbar) {
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
   const [showCartModal, setShowCartModal] = useState<boolean>(false);
   const [showUserTool, setShowUserTool] = useState<boolean>(false);
+  const history = useNavigate();
+  const navlinks =
+    auth.role === "admin"
+      ? [
+          {
+            id: "users",
+            title: "Gestionar usuarios",
+            icon: personIcon,
+            onClick: () => history("/"),
+          },
+          {
+            id: "products",
+            title: "Gestionar Productos",
+            icon: clipsIcon,
+            onClick: () => history("/manage-products"),
+          },
 
-  const navlinks = [
-    {
-      id: "notify",
-      title: "Notificaiones",
-      icon: bellIcon,
-    },
-    {
-      id: "cart",
-      title: "Carrito de compra",
-      icon: cartIcon,
-      onClick: () => setShowCartModal(true),
-    },
-    {
-      id: "login",
-      title: "Inicia sesion",
-      icon: personIcon,
-      onClick: () => setShowLoginModal(true),
-    },
-    {
-      id: "user",
-      title: auth.name,
-      icon: logedIcon,
-      onClick: () => setShowUserTool(!showUserTool),
-    },
-  ];
+          {
+            id: "user",
+            title: auth.name,
+            icon: logedIcon,
+            onClick: () => setShowUserTool(!showUserTool),
+          },
+        ]
+      : [
+          {
+            id: "notify",
+            title: "Notificaiones",
+            icon: bellIcon,
+          },
+          {
+            id: "cart",
+            title: "Carrito de compra",
+            icon: cartIcon,
+            onClick: () => setShowCartModal(true),
+          },
+          {
+            id: "login",
+            title: "Inicia sesion",
+            icon: personIcon,
+            onClick: () => setShowLoginModal(true),
+          },
+          {
+            id: "user",
+            title: auth.name,
+            icon: logedIcon,
+            onClick: () => setShowUserTool(!showUserTool),
+          },
+        ];
   const { logoutUser } = useAuthActions();
 
   return (
@@ -72,6 +101,7 @@ export function Navbar({ auth }: Navbar) {
                 className={link.id === "User" ? "relative" : ""}
                 key={link.id}
                 onClick={link.onClick}
+                title={link.title}
               >
                 <img
                   src={link.icon}
@@ -87,17 +117,17 @@ export function Navbar({ auth }: Navbar) {
                     } min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg  [&[data-te-dropdown-show]]:block`}
                   >
                     <li>
-                      <a
-                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700  active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400  "
-                        onClick={logoutUser}
-                      >
+                      <a className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700  active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400  ">
                         {auth.name}
                       </a>
                     </li>
                     <li>
                       <a
                         className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400  "
-                        onClick={logoutUser}
+                        onClick={() => {
+                          logoutUser();
+                          history("/");
+                        }}
                       >
                         Cerrar sesion
                       </a>

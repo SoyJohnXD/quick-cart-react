@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import usersReducer from "./users/slice";
 import authReducer from "./auth/slice";
+import cartReducer from "./cart/slice";
+import productsReducer from "./products/slice";
 
 const persistenceLocalStorageMiddleware = (store) => (next) => (action) => {
   next(action);
@@ -10,7 +12,9 @@ const persistenceLocalStorageMiddleware = (store) => (next) => (action) => {
 export const store = configureStore({
   reducer: {
     users: usersReducer,
+    products: productsReducer,
     auth: authReducer,
+    cart: cartReducer,
   },
   middleware: [persistenceLocalStorageMiddleware],
 });
