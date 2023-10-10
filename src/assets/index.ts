@@ -1,5 +1,5 @@
 import categoryFruits from "./category-fruits.webp";
-import categoryMeats from "./category-meats.webp";
+import categoryMeats from "./category-Meats.webp";
 import categoryPantry from "./category-pantry.webp";
 import categoryVine from "./category-vine.webp";
 import categoryDrinks from "./category-drinks.webp";
