@@ -24,12 +24,13 @@ export interface Input {
   name: string;
   label?: string;
   type: string;
-  onChage: () => void;
+  onChage: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   isRequired?: boolean;
   classLabel?: string;
   classContainer?: string;
   classInput?: string;
+  value: string;
 }
 
 export interface SearchInput extends Input {
@@ -76,6 +77,7 @@ export interface product {
   img: string;
   variants: Variants[];
   description: string;
+  categories?: string[];
 }
 export interface ListProduct {
   products: product[];
@@ -94,6 +96,44 @@ export interface Category {
 }
 
 export interface Filter {
-  title: string;
-  onChange: () => void;
+  filter: { title: string; isCheck: boolean };
+  filters: { title: string; isCheck: boolean }[][];
+  setFilters: React.Dispatch<React.SetStateAction<any[]>>;
+}
+
+export interface SideFilters {
+  productsList: product[];
+  setProductsList: React.Dispatch<React.SetStateAction<product[]>>;
+  products: product[];
+}
+
+export interface User {
+  name: string;
+  lastname: string;
+  email: string;
+  password: string;
+  role: "admin" | "client";
+}
+
+export interface RegisterUser extends User {
+  confirm_password: string;
+}
+
+export interface UserWithId extends User {
+  id: string;
+}
+
+export interface userAuth {
+  name: string;
+  email: string;
+  role: "admin" | "client";
+}
+
+export interface AuthForm {
+  password: string;
+  email: string;
+}
+
+export interface Navbar {
+  auth: userAuth;
 }

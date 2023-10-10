@@ -11,6 +11,8 @@ export function Input({
   classLabel,
   classInput,
   classContainer,
+  onChage,
+  value,
 }: Input) {
   return (
     <div className={classContainer}>
@@ -25,6 +27,8 @@ export function Input({
         className={`input ${classInput}`}
         placeholder={placeholder}
         required={isRequired}
+        onChange={onChage}
+        value={value}
       />
     </div>
   );

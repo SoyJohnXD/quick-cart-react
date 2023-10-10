@@ -14,6 +14,7 @@ import personIcon from "./icons/person.svg";
 import cartIcon from "./icons/cart.svg";
 import searchIcon from "./icons/search.svg";
 import closeIcon from "./icons/close.svg";
+import logedIcon from "./icons/loged.svg";
 
 export {
   categoryFruits,
@@ -32,4 +33,5 @@ export {
   personIcon,
   searchIcon,
   closeIcon,
+  logedIcon,
 };

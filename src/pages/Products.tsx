@@ -1,9 +1,13 @@
+import { useState } from "react";
 import Breadcum from "../components/Breadcum/Breadcum";
 import { ListProduct } from "../components/ListProducts/ListProduct";
 import { SideFilters } from "../components/SideFilters/SideFilters";
 import { products } from "../constants";
+import { product } from "../types";
 
 export function Products() {
+  const [productsList, setProductsList] = useState<product[]>(products);
+
   return (
     <div className="mt-9">
       <Breadcum />
@@ -11,8 +15,12 @@ export function Products() {
         Listado de productos
       </h1>
       <div className="w-full flex flex-row ">
-        <SideFilters />
-        <ListProduct products={products} />
+        <SideFilters
+          setProductsList={setProductsList}
+          productsList={productsList}
+          products={products}
+        />
+        <ListProduct products={productsList} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ import {
   personIcon,
   cartIcon,
 } from "../assets";
-import { Routes } from "../types";
+import { Auth, AuthForm, RegisterUser, Routes } from "../types";
 
 export const banners = [
   {
@@ -63,7 +63,7 @@ export const products = [
     brand: "REFISAL",
     name: "Sal refinada",
     img: salt,
-    categories: ["Alimentos básicos"],
+    categories: ["Alimentos básicos", "REFISAL"],
     variants: [
       {
         quantity: 500,
@@ -95,7 +95,7 @@ export const products = [
     brand: "SELLO ROJO",
     name: "Cafe molido Lamidano",
     img: coffe,
-    categories: ["Alimentos básicos"],
+    categories: ["Alimentos básicos", "Bebidas", "SELLO ROJO"],
     variants: [
       {
         quantity: 500,
@@ -113,7 +113,7 @@ export const products = [
     brand: "SELLO ROJO 2",
     name: "Cafe molido Lamidano",
     img: coffe,
-    categories: ["Alimentos básicos"],
+    categories: ["Alimentos básicos", "SELLO ROJO"],
     variants: [
       {
         quantity: 500,
@@ -131,7 +131,7 @@ export const products = [
     brand: "VAN CAMPS",
     name: "Atún baby en aceite de oliva",
     img: tuna,
-    categories: ["Alimentos básicos"],
+    categories: ["Alimentos básicos", "VAN CAMPS"],
     variants: [
       {
         quantity: 240,
@@ -149,7 +149,7 @@ export const products = [
     brand: "GOURMET",
     name: "Aceite Familia Multiusos",
     img: oil,
-    categories: ["Alimentos básicos"],
+    categories: ["Alimentos básicos", "GOURMET"],
     variants: [
       {
         quantity: 900,
@@ -163,27 +163,6 @@ export const products = [
       "Aceite de oliva extra virgen Gourmet, perfecto para todas tus necesidades culinarias. Su sabor suave y aroma fresco realzarán el sabor de tus platillos. Úsalo para cocinar, aderezar ensaladas o sumergir pan fresco. Una opción saludable y deliciosa.",
   },
 ];
-
-export const categoriesFilter = {
-  type_product: [
-    { title: "Alimentos Básicos", onChange: (): void => {} },
-    { title: "Bebidas", onChange: (): void => {} },
-    { title: "Lácteos", onChange: (): void => {} },
-    { title: "Frutas y Verduras", onChange: (): void => {} },
-    { title: "Panadería", onChange: (): void => {} },
-    { title: "Limpieza", onChange: (): void => {} },
-    { title: "Cuidado Personal", onChange: (): void => {} },
-    { title: "Tecnología", onChange: (): void => {} },
-    { title: "Hogar", onChange: (): void => {} },
-    { title: "Otros", onChange: (): void => {} },
-  ],
-  brand: [
-    { title: "REFISAL", onChange: (): void => {} },
-    { title: "SELLO ROJO", onChange: (): void => {} },
-    { title: "VAN CAMPS", onChange: (): void => {} },
-    { title: "GOURMET", onChange: (): void => {} },
-  ],
-};
 
 export const cartProducts = [
   {
@@ -236,4 +215,19 @@ export const cartProducts = [
 export const routes: Routes = {
   "/": "Inicio",
   "/products": "Lista de productos",
+  "/product": "Lista de productos",
+};
+
+export const USER_EMPTY: RegisterUser = {
+  name: "",
+  lastname: "",
+  email: "",
+  password: "",
+  confirm_password: "",
+  role: "client",
+};
+
+export const LOGIN_EMPTY: AuthForm = {
+  email: "",
+  password: "",
 };
