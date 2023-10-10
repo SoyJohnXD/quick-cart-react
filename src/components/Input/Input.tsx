@@ -1,6 +1,6 @@
 import { Input, SearchInput } from "../../types";
 import { searchIcon } from "../../assets";
-import "./input.css";
+import "./Input.css";
 
 export function Input({
   label,
