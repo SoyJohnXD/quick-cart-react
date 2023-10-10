@@ -11,12 +11,9 @@ export default function ManageProducts() {
   const { removeProduct } = useProductsActions();
   const [showCreateProductModal, setShowCreateProductModal] =
     useState<boolean>(false);
-  const [result, setResult] = useState<"ok" | "ko" | null>(null);
 
   const handdleRemove = (id: string) => {
-    setResult(null);
     removeProduct(id);
-    return setResult("ok");
   };
   return (
     <>

@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { currencyFormatter } from "../utils";
 import { useAppSelector } from "../hook/store";
 import { useCartActions } from "../hook/useCartActions";
-import { CartProduct, product } from "../types";
+import { CartProduct } from "../types";
+import { PROD_VOID } from "../constants";
 
 export default function Product() {
   const { product } = useParams();
   const Products = useAppSelector((state) => state.products);
-  const [prod, setProd] = useState<product>(
-    Products.find((_product) => _product.id === product)
-  );
+  const prod =
+    Products.find((_product) => _product.id === product) ?? PROD_VOID;
 
   const { addProductCart } = useCartActions();
 

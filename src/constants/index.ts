@@ -18,6 +18,7 @@ import {
   RegisterUser,
   Routes,
   UserWithId,
+  product,
   userAuth,
 } from "../types";
 
@@ -245,6 +246,24 @@ export const PROD_EMPTY: ProductForm = {
   stock: 0,
   description: "",
   categories: "",
+};
+
+export const PROD_VOID: product = {
+  id: "",
+  brand: "",
+  name: "",
+  img: placeholder,
+  variants: [
+    {
+      quantity: 0,
+      unit: "",
+      price: 0,
+      is_outstanding: true,
+      stock: 0,
+    },
+  ],
+  description: "",
+  categories: [],
 };
 
 export const LOGIN_EMPTY: AuthForm = {
