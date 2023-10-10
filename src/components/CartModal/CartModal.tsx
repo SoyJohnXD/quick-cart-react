@@ -16,7 +16,8 @@ export default function CartModal({ show, setShow }: IModal) {
   }, [Cart]);
 
   useEffect(() => {
-    if (!show) {
+    if (!show && Cart.length > 0) {
+      console.log(Cart);
       setShow(true);
     }
   }, [Cart]);

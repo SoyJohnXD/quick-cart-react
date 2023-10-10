@@ -170,56 +170,7 @@ export const products = [
   },
 ];
 
-export const cartProducts: CartProductWhitId[] = [
-  {
-    cartId: crypto.randomUUID(),
-    id: "1",
-    brand: "REFISAL",
-    name: "Sal refinada",
-    img: salt,
-    quantity: 500,
-    quantity_buy: 2,
-    variants: [],
-    unit: "Gr",
-    price: 1100,
-    is_outstanding: true,
-    stock: 50,
-    description:
-      "Refisal 1000 gr es una sal refinada de primera calidad, imprescindible en cualquier cocina. Creada mediante un proceso de refinación cuidadoso, garantiza la pureza y la textura fina que facilita su incorporación a tus recetas. Esta sal es ideal para sazonar y realzar el sabor de tus platos favoritos, desde sopas y guisos hasta carnes a la parrilla y ensaladas frescas. Su granulometría uniforme y suave al tacto te permiten controlar con precisión la cantidad que deseas utilizar.",
-  },
-  {
-    cartId: crypto.randomUUID(),
-    id: "2",
-    brand: "VAN CAMPS",
-    name: "Atún baby en aceite de oliva",
-    img: tuna,
-    quantity: 240,
-    quantity_buy: 3,
-    variants: [],
-    unit: "Gr",
-    price: 16100,
-    is_outstanding: true,
-    stock: 75,
-    description:
-      "Atún baby en aceite de oliva de Van Camps, elaborado con los mejores ingredientes para garantizar su frescura y sabor. Disfruta de este delicioso atún en ensaladas, sandwiches y platos gourmet.",
-  },
-  {
-    cartId: crypto.randomUUID(),
-    id: "3",
-    brand: "GOURMET",
-    name: "Aceite Familia Multiusos",
-    img: oil,
-    quantity: 900,
-    quantity_buy: 1,
-    variants: [],
-    unit: "ml",
-    price: 16280,
-    is_outstanding: true,
-    stock: 200,
-    description:
-      "Aceite de oliva extra virgen Gourmet, perfecto para todas tus necesidades culinarias. Su sabor suave y aroma fresco realzarán el sabor de tus platillos. Úsalo para cocinar, aderezar ensaladas o sumergir pan fresco. Una opción saludable y deliciosa.",
-  },
-];
+export const cartProducts: CartProductWhitId[] = [];
 
 export const routes: Routes = {
   "/": "Inicio",
