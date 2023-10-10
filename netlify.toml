@@ -1,7 +1,0 @@
-# Configuración básica para Netlify
-[build]
-  command = "yarn build"  # Comando para construir tu aplicación
-  publish = "dist"  # Directorio de salida después de la construcción
-
-[[plugins]]
-  package = "@netlify/plugin-yarn"  # Plugin para manejar comandos Yarn
